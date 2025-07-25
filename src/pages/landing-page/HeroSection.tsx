@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, Check, Leaf, Cloud, BarChart3 } from 'lucide-react';
+import { ArrowRight, Check, Briefcase, LineChart, GraduationCap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Define keyframe animations as a CSS-in-JS object
@@ -51,10 +51,10 @@ const keyframeStyles = `
 
 // User avatar data
 const userAvatars = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aW5kaWFuJTIwZmFybWVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&h=100&q=80",
-  "https://images.unsplash.com/photo-1507152832244-10d45c7eda57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGluZGlhbiUyMGZhcm1lcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
-  "https://images.unsplash.com/photo-1580132849350-28fda8fef6d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFybWVyJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&h=100&q=80",
-  "https://images.unsplash.com/photo-1589677677517-5784e74663ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFybWVyJTIwZmFjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80"
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmVzc2lvbmFsfGVufDB8fDB8fHww&auto=format&fit=crop&w=100&h=100&q=80",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2Zlc3Npb25hbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80",
+  "https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=100&h=100&q=80",
+  "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmVzc2lvbmFsJTIwZmFjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=100&h=100&q=80"
 ];
 
 const HeroSection = () => {
@@ -72,51 +72,51 @@ const HeroSection = () => {
       {/* Add keyframes to the document */}
       <style dangerouslySetInnerHTML={{ __html: keyframeStyles }} />
       
-      {/* Falling Leaves Animation */}
+      {/* Falling Icons Animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-[10%] text-green-500 opacity-70" style={{ animation: 'falling 15s linear infinite', animationDelay: '0s' }}>
-          <Leaf size={24} />
+        <div className="absolute top-0 left-[10%] text-blue-500 opacity-70" style={{ animation: 'falling 15s linear infinite', animationDelay: '0s' }}>
+          <Briefcase size={24} />
         </div>
-        <div className="absolute top-0 left-[25%] text-green-600 opacity-60" style={{ animation: 'fallingReverse 11s linear infinite', animationDelay: '2s' }}>
-          <Leaf size={18} />
+        <div className="absolute top-0 left-[25%] text-blue-600 opacity-60" style={{ animation: 'fallingReverse 11s linear infinite', animationDelay: '2s' }}>
+          <GraduationCap size={18} />
         </div>
-        <div className="absolute top-0 left-[45%] text-green-400 opacity-80" style={{ animation: 'falling 13s linear infinite', animationDelay: '5s' }}>
-          <Leaf size={20} />
+        <div className="absolute top-0 left-[45%] text-blue-400 opacity-80" style={{ animation: 'falling 13s linear infinite', animationDelay: '5s' }}>
+          <Briefcase size={20} />
         </div>
-        <div className="absolute top-0 left-[65%] text-emerald-500 opacity-70" style={{ animation: 'fallingReverse 14s linear infinite', animationDelay: '1s' }}>
-          <Leaf size={22} />
+        <div className="absolute top-0 left-[65%] text-purple-500 opacity-70" style={{ animation: 'fallingReverse 14s linear infinite', animationDelay: '1s' }}>
+          <LineChart size={22} />
         </div>
-        <div className="absolute top-0 left-[85%] text-emerald-600 opacity-60" style={{ animation: 'falling 16s linear infinite', animationDelay: '3s' }}>
-          <Leaf size={16} />
+        <div className="absolute top-0 left-[85%] text-purple-600 opacity-60" style={{ animation: 'falling 16s linear infinite', animationDelay: '3s' }}>
+          <GraduationCap size={16} />
         </div>
-        <div className="absolute top-0 left-[5%] text-green-500 opacity-75" style={{ animation: 'fallingReverse 12s linear infinite', animationDelay: '7s' }}>
-          <Leaf size={19} />
+        <div className="absolute top-0 left-[5%] text-blue-500 opacity-75" style={{ animation: 'fallingReverse 12s linear infinite', animationDelay: '7s' }}>
+          <LineChart size={19} />
         </div>
-        <div className="absolute top-0 left-[55%] text-emerald-400 opacity-80" style={{ animation: 'falling 14s linear infinite', animationDelay: '4s' }}>
-          <Leaf size={21} />
+        <div className="absolute top-0 left-[55%] text-purple-400 opacity-80" style={{ animation: 'falling 14s linear infinite', animationDelay: '4s' }}>
+          <Briefcase size={21} />
         </div>
       </div>
       
       {/* Background is now white - all decorative blue wave elements are removed */}
       
-      <div className="max-w-7xl mx-auto px-6 py-10 md:py-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left column - Text content */}
+      <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Centered Text Content */}
           <div className="space-y-8">
             <div className="inline-flex items-center px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full text-blue-600 text-sm font-medium">
               <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2"></span>
-              AI-Powered Agriculture Platform
+              AI-Powered Career Platform
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-              Revolutionizing <span className="text-blue-600">Agriculture</span> with AI Technology
+              Transforming <span className="text-blue-600">Careers</span> with AI Technology
             </h1>
             
             <p className="text-lg text-gray-600 leading-relaxed">
-              Empower your farming with data-driven insights. Increase yields, reduce costs, and make better decisions through AI-driven crop monitoring, disease detection, and personalized recommendations.
+              Elevate your career with data-driven insights. Find better jobs, enhance your skills, and make smarter career decisions through AI-driven job matching, skills analysis, and personalized recommendations.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 h-auto rounded-xl font-medium text-lg flex items-center justify-center gap-2 shadow-lg shadow-blue-200"
                 onClick={() => navigate('/signup')}
@@ -132,8 +132,8 @@ const HeroSection = () => {
               </Button>
             </div>
             
-            <div className="pt-6">
-              <div className="flex flex-wrap items-center gap-8">
+            <div className="pt-6 flex flex-wrap justify-center">
+              <div className="flex items-center gap-8">
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-2">
                     {userAvatars.map((avatar, i) => (
@@ -146,7 +146,7 @@ const HeroSection = () => {
                       </div>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600 font-medium">Trusted by 10,000+ farmers</span>
+                  <span className="text-sm text-gray-600 font-medium">Trusted by 10,000+ professionals</span>
                 </div>
                 
                 <div className="flex items-center gap-1">
@@ -156,35 +156,6 @@ const HeroSection = () => {
                     </svg>
                   ))}
                   <span className="text-sm text-gray-600 font-medium ml-1">4.9/5</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Right column - Farming Machine image */}
-          <div className="relative">
-            <div className="relative">
-              <div style={{ 
-                background: "#a7e9ff",
-                borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%", 
-                height: "350px",
-                width: "100%",
-                position: "relative",
-                overflow: "hidden"
-              }}>
-                <div className="absolute bottom-0 left-0 w-full h-1/3" style={{ background: "#7ed957" }}></div>
-                <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2" style={{ width: "75%" }}>
-                  <img 
-                    src="/hero.avif" 
-                    alt="Hero"
-                    className="w-full h-auto drop-shadow-2xl rounded-xl"
-                  />
-                </div>
-                <div className="absolute bottom-12 left-12">
-                  <div className="w-16 h-16 bg-yellow-300 rounded-full"></div>
-                </div>
-                <div className="absolute bottom-8 right-24">
-                  <div className="w-12 h-12 bg-yellow-300 rounded-full"></div>
                 </div>
               </div>
             </div>

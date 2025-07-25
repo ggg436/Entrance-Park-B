@@ -1,12 +1,12 @@
 import React from 'react';
-import { Check, Smartphone, Apple } from 'lucide-react';
+import { Check, Smartphone, Briefcase, ChartBar } from 'lucide-react';
 
 const MobileAppSection = () => {
   const features = [
-    "Easy transactions",
-    "Received money", 
-    "Flexible for use",
-    "Record documents"
+    "Smart job matching",
+    "Real-time notifications", 
+    "Apply on the go",
+    "Track applications"
   ];
 
   return (
@@ -20,8 +20,8 @@ const MobileAppSection = () => {
                 What are you waiting for, get the app now!
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                FarmConnect gives you the tools & features you need to manage your agricultural business. 
-                Get real-time insights, connect with buyers, and track your farm's progress all in one app.
+                Job In Point gives you the tools & features you need to advance your career. 
+                Get AI-powered job matches, apply to opportunities, and track your applications all in one app.
               </p>
             </div>
 
@@ -40,7 +40,9 @@ const MobileAppSection = () => {
             {/* Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-foreground text-background px-8 py-4 rounded-2xl flex items-center justify-center space-x-3 hover:bg-foreground/90 transition-colors">
-                <Apple className="w-6 h-6" />
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.05,20.28c-0.98,0.95-2.05,0.8-3.08,0.35c-1.09-0.46-2.09-0.48-3.24,0c-1.44,0.62-2.2,0.44-3.06-0.35 C2.79,15.25,3.51,7.59,8.42,7.31c1.33,0.07,2.25,0.78,3.13,0.8c1.2-0.1,2.09-0.84,3.13-0.91C16.06,7.32,17.12,8.18,17.8,9.6 c-3.29,1.84-2.58,6.16,0.66,7.19C17.98,19.11,17.77,19.74,17.05,20.28z M12.03,6.92c-0.13-2.85,2.18-5.3,4.8-5.3 C17.1,4.25,14.27,6.91,12.03,6.92z"/>
+                </svg>
                 <div className="text-left">
                   <div className="text-xs opacity-70">DOWNLOAD ON THE</div>
                   <div className="text-lg font-semibold">App Store</div>
@@ -81,7 +83,7 @@ const MobileAppSection = () => {
                     </div>
 
                     <div className="text-muted-foreground text-sm mb-2">This month</div>
-                    <div className="text-2xl font-bold text-foreground mb-6">Farm Analytics</div>
+                    <div className="text-2xl font-bold text-foreground mb-6">Job Search Analytics</div>
 
                     {/* Chart Area */}
                     <div className="bg-card rounded-2xl p-4 mb-4 shadow-sm">
@@ -97,22 +99,22 @@ const MobileAppSection = () => {
 
                     {/* Stats Section */}
                     <div className="bg-card rounded-2xl p-4 shadow-sm">
-                      <div className="text-sm text-muted-foreground mb-2">Crop Distribution</div>
+                      <div className="text-sm text-muted-foreground mb-2">Job Category Distribution</div>
                       <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-lg font-bold">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg font-bold">
                           44%
                         </div>
                         <div className="flex-1">
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="text-muted-foreground">Wheat</span>
-                            <span className="text-orange-500">25%</span>
+                            <span className="text-muted-foreground">Tech</span>
+                            <span className="text-blue-500">25%</span>
                           </div>
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="text-muted-foreground">Corn</span>
-                            <span className="text-blue-500">20%</span>
+                            <span className="text-muted-foreground">Design</span>
+                            <span className="text-purple-500">20%</span>
                           </div>
                           <div className="flex justify-between text-sm">
-                            <span className="text-muted-foreground">Rice</span>
+                            <span className="text-muted-foreground">Marketing</span>
                             <span className="text-green-500">10%</span>
                           </div>
                         </div>
