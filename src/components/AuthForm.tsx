@@ -22,7 +22,7 @@ export default function AuthForm({ initialMode }: AuthFormProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [userType, setUserType] = useState<'farmer' | 'user'>('user')
+  const [userType, setUserType] = useState<'agency' | 'user'>('user')
   const [isLoading, setIsLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   
@@ -170,37 +170,31 @@ export default function AuthForm({ initialMode }: AuthFormProps) {
               )}
               
               {isSignUp && (
-                <div className="space-y-2">
-                  <Label className="text-sm font-medium text-gray-700">
-                    Account Type
-                  </Label>
-                  <div className="flex items-center gap-6 mt-2">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="userType-farmer"
-                        name="userType"
-                        className="w-4 h-4 text-blue-600"
-                        checked={userType === 'farmer'}
-                        onChange={() => setUserType('farmer')}
-                      />
-                      <Label htmlFor="userType-farmer" className="ml-2 text-sm font-medium text-gray-700">
-                        Farmer
-                      </Label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="userType-user"
-                        name="userType"
-                        className="w-4 h-4 text-blue-600"
-                        checked={userType === 'user'}
-                        onChange={() => setUserType('user')}
-                      />
-                      <Label htmlFor="userType-user" className="ml-2 text-sm font-medium text-gray-700">
-                        Regular User
-                      </Label>
-                    </div>
+                <div className="grid gap-2 mb-2">
+                  <Label htmlFor="userType">Account Type</Label>
+                  <div className="flex gap-2">
+                    <Button
+                      type="button"
+                      variant={userType === 'user' ? 'default' : 'outline'}
+                      className="flex-1"
+                      onClick={() => setUserType('user')}
+                    >
+                      User
+                      <div className="text-xs opacity-70 mt-1">
+                        Search jobs & build profiles
+                      </div>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={userType === 'agency' ? 'default' : 'outline'} 
+                      className="flex-1"
+                      onClick={() => setUserType('agency')}
+                    >
+                      Agency
+                      <div className="text-xs opacity-70 mt-1">
+                        Post jobs & recruit talent
+                      </div>
+                    </Button>
                   </div>
                 </div>
               )}

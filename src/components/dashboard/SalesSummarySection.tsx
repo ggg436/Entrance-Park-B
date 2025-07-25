@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ShoppingBag, Package, CheckCircle, Users } from 'lucide-react';
+import { Briefcase, FileCheck, Eye, Users } from 'lucide-react';
 import { VisitorInsightsChart } from './charts/VisitorInsightsChart';
 import { useTranslation } from 'react-i18next';
 import { formatCurrency, formatNumber } from '@/lib/formatters';
@@ -9,65 +9,65 @@ import { formatCurrency, formatNumber } from '@/lib/formatters';
 export const SalesSummarySection = () => {
   const { t } = useTranslation();
   
-  const salesData = [
+  const careerMetrics = [
     {
-      title: 'dashboard.totalSales',
-      value: 1000,
-      isCurrency: true,
-      change: 5,
-      icon: ShoppingBag,
-      bgColor: "bg-pink-100",
-      iconColor: "text-white",
-      circleBg: "bg-pink-400"
-    },
-    {
-      title: 'dashboard.totalOrder',
-      value: 300,
-      isCurrency: false,
-      change: 5,
-      icon: Package,
-      bgColor: "bg-orange-100",
-      iconColor: "text-white",
-      circleBg: "bg-orange-300"
-    },
-    {
-      title: 'dashboard.productSold',
-      value: 5,
+      title: 'Job Applications',
+      value: 24,
       isCurrency: false,
       change: 12,
-      icon: CheckCircle,
+      icon: Briefcase,
+      bgColor: "bg-blue-100",
+      iconColor: "text-white",
+      circleBg: "bg-blue-400"
+    },
+    {
+      title: 'Profile Views',
+      value: 312,
+      isCurrency: false,
+      change: 18,
+      icon: Eye,
+      bgColor: "bg-purple-100",
+      iconColor: "text-white",
+      circleBg: "bg-purple-400"
+    },
+    {
+      title: 'Interviews',
+      value: 5,
+      isCurrency: false,
+      change: 8,
+      icon: FileCheck,
       bgColor: "bg-green-100",
       iconColor: "text-white",
       circleBg: "bg-green-400"
     },
     {
-      title: 'dashboard.newCustomers',
-      value: 8,
+      title: 'Network Growth',
+      value: 28,
       isCurrency: false,
-      change: 0.5,
+      change: 15,
       icon: Users,
-      bgColor: "bg-purple-100",
+      bgColor: "bg-amber-100",
       iconColor: "text-white",
-      circleBg: "bg-purple-400"
+      circleBg: "bg-amber-400"
     }
   ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-      {/* Today's Sales */}
+      {/* Today's Activity */}
       <Card className="bg-white border border-gray-200/50 rounded-lg overflow-hidden shadow-sm h-full w-full relative">
         <CardHeader className="pb-0 px-3 pt-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-bold text-zinc-900">{t('dashboard.todaySales')}</CardTitle>
+            <CardTitle className="text-lg font-bold text-zinc-900">Career Activity</CardTitle>
             <button className="text-xs text-gray-600 border border-gray-100 rounded-md px-2 py-0.5 bg-gray-50 hover:bg-gray-100">
               {t('dashboard.export')}
             </button>
           </div>
-          <p className="text-xs text-gray-600 mb-2">{t('dashboard.salesSummary')}</p>
+          <p className="text-xs text-gray-600 mb-2">Your job search progress this month</p>
         </CardHeader>
         <CardContent className="absolute bottom-6 left-0 right-0 px-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-            {salesData.map((item, index) => {
+            {careerMetrics.map((item, index) => {
               // Format value based on type (currency or regular number)
               const formattedValue = item.isCurrency 
                 ? formatCurrency(item.value) 
@@ -81,8 +81,8 @@ export const SalesSummarySection = () => {
                     </div>
                   </div>
                   <div className="text-xl font-bold text-zinc-900 mb-0.5">{formattedValue}</div>
-                  <div className="text-xs text-gray-600 mb-0.5">{t(item.title)}</div>
-                  <div className="text-xs text-blue-600">+{item.change}% {t('dashboard.fromYesterday')}</div>
+                  <div className="text-xs text-gray-600 mb-0.5">{item.title}</div>
+                  <div className="text-xs text-blue-600">+{item.change}% {t('dashboard.fromLastMonth')}</div>
                 </div>
               );
             })}

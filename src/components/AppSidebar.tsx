@@ -4,20 +4,23 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Tractor,
-  Wheat,
-  Sprout,
+  Briefcase,
+  GraduationCap,
   Star,
   BarChart3,
   Rss,
-  ShoppingCart,
-  CreditCard,
+  Search,
   DollarSign,
   Settings,
   HelpCircle,
   LineChart,
   MessageSquare,
-  FileText
+  FileText,
+  Building,
+  BookOpen,
+  Bell,
+  Users,
+  BarChart2
 } from 'lucide-react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -37,73 +40,110 @@ export const AppSidebar = () => {
     title: string;
     url: string;
     icon: React.ElementType;
+    showFor?: string[]; // Added for filtering
+    onClick?: () => void; // Added for click handlers
   }>>([]);
 
   useEffect(() => {
+    console.log("Profile state:", profile);
     // Define all navigation items
     const allItems = [
       { 
         title: t('common.dashboard'), 
         url: '/dashboard',
         icon: BarChart3,
-        showFor: ['farmer', 'user']  // Show for all users
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']  // Show for all users
       },
       { 
-        title: t('common.feed'), 
-        url: '/dashboard/feed',
-        icon: Rss,
-        showFor: ['farmer', 'user']
+        title: 'Job Search', 
+        url: '/dashboard/jobs',
+        icon: Search,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
       },
       {
-        title: t('common.data'),
-        url: '/dashboard/data',
-        icon: LineChart,
-        showFor: ['farmer']  // Only show for farmers
+        title: 'My Applications',
+        url: '/dashboard/applications',
+        icon: Briefcase,
+        showFor: ['jobseeker', 'user', 'farmer']  
+      },
+      {
+        title: 'Company Dashboard',
+        url: '/dashboard/company',
+        icon: Building,
+        showFor: ['employer', 'user', 'farmer']  
       },
       { 
-        title: t('common.marketplace'), 
-        url: '/dashboard/marketplace',
-        icon: ShoppingCart,
-        showFor: ['farmer', 'user']
+        title: 'Career Feed', 
+        url: '/dashboard/feed',
+        icon: Rss,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
       },
       { 
         title: t('common.messaging'), 
         url: '/dashboard/messaging',
         icon: MessageSquare,
-        showFor: ['farmer', 'user']
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
       },
       { 
         title: 'AI CV Maker', 
         url: '/dashboard/cv-maker',
         icon: FileText,
-        showFor: ['farmer', 'user']
+        showFor: ['employer', 'jobseeker', 'user', 'farmer', 'agency']
+      },
+      {
+        title: 'CV Analyzer',
+        url: '/dashboard/cv-analyzer',
+        icon: BarChart2,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer', 'agency']
       },
       { 
-        title: t('common.transactions'), 
-        url: '/dashboard/transactions',
-        icon: CreditCard,
-        showFor: ['farmer', 'user']
+        title: 'Jobs', 
+        url: '/dashboard/jobs',
+        icon: Briefcase,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
+      },
+      { 
+        title: 'Courses', 
+        url: '/dashboard/courses',
+        icon: GraduationCap,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
       },
       { 
         title: t('common.pricing'), 
         url: '/dashboard/pricing',
         icon: DollarSign,
-        showFor: ['farmer', 'user']
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
+      },
+      { 
+        title: 'Network', 
+        url: '/dashboard/network',
+        icon: Users,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
       },
       { 
         title: t('common.help'), 
         url: '/dashboard/help',
         icon: HelpCircle,
-        showFor: ['farmer', 'user']
+        showFor: ['employer', 'jobseeker', 'user', 'farmer']
+      },
+      { 
+        title: 'AI Chat', 
+        url: '/dashboard/chat',
+        icon: MessageSquare,
+        showFor: ['employer', 'jobseeker', 'user', 'farmer', 'agency']
       },
     ];
 
-    // Filter navigation items based on user type
+    // Filter navigation items based on user type or show all if no profile
     const userType = profile?.userType || 'user';
+    console.log("Current user type:", userType);
+    
+    // Show all items by default - we're adding support for legacy user types as well
     const filteredItems = allItems.filter(item => 
-      item.showFor.includes(userType)
+      item.showFor === undefined || item.showFor.includes(userType)
     );
-
+    
+    console.log("Navigation items:", filteredItems);
     setNavigationItems(filteredItems);
   }, [profile, t]);
 
@@ -147,13 +187,13 @@ export const AppSidebar = () => {
 
       {/* Brand Section - positioned above top edge */}
       <NavLink to="/dashboard" className="flex items-center px-6 h-[50px] flex-shrink-0 bg-white mb-6">
-        <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-          <Tractor className="w-6 h-6 text-white absolute" />
-          <Wheat className="w-4 h-4 text-white absolute bottom-1 right-1" />
-          <Sprout className="w-3 h-3 text-white absolute top-1 right-1" />
+        <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+          <Briefcase className="w-6 h-6 text-white absolute" />
+          <GraduationCap className="w-4 h-4 text-white absolute bottom-1 right-1" />
+          <BookOpen className="w-3 h-3 text-white absolute top-1 right-1" />
         </div>
         <span className={`ml-3 text-2xl font-semibold transition-opacity duration-200 whitespace-nowrap ${isCollapsed ? 'opacity-0 w-0 hidden' : 'opacity-100 block'}`}>
-          Krishak AI
+          CareerBoost
         </span>
       </NavLink>
 
@@ -164,21 +204,35 @@ export const AppSidebar = () => {
           <nav className="px-4">
             <div className="space-y-2">
               {navigationItems.map((item) => (
-                <NavLink
-                  key={item.url}
-                  to={item.url}
-                  className={`flex items-center ${isCollapsed ? 'justify-center w-full px-0 mx-1' : 'gap-4 px-5'} py-4 rounded-2xl cursor-pointer ${
-                    isActive(item.url)
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:bg-gray-50'
-                  }`}
-                  title={isCollapsed ? item.title : ''}
-                >
-                  <item.icon className={`w-7 h-7 flex-shrink-0 ${isActive(item.url) ? 'text-white' : 'text-gray-400'}`} />
-                  <span className={`text-lg font-medium ${isCollapsed ? 'hidden' : 'block'}`}>
-                    {!isCollapsed && item.title}
-                  </span>
-                </NavLink>
+                item.onClick ? (
+                  <button
+                    key={item.url}
+                    onClick={item.onClick}
+                    className={`flex items-center ${isCollapsed ? 'justify-center w-full px-0 mx-1' : 'gap-4 px-5'} py-4 rounded-2xl cursor-pointer text-gray-600 hover:bg-gray-50`}
+                    title={isCollapsed ? item.title : ''}
+                  >
+                    <item.icon className={`w-7 h-7 flex-shrink-0 text-gray-400`} />
+                    <span className={`text-lg font-medium ${isCollapsed ? 'hidden' : 'block'}`}>
+                      {!isCollapsed && item.title}
+                    </span>
+                  </button>
+                ) : (
+                  <NavLink
+                    key={item.url}
+                    to={item.url}
+                    className={`flex items-center ${isCollapsed ? 'justify-center w-full px-0 mx-1' : 'gap-4 px-5'} py-4 rounded-2xl cursor-pointer ${
+                      isActive(item.url)
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                    title={isCollapsed ? item.title : ''}
+                  >
+                    <item.icon className={`w-7 h-7 flex-shrink-0 ${isActive(item.url) ? 'text-white' : 'text-gray-400'}`} />
+                    <span className={`text-lg font-medium ${isCollapsed ? 'hidden' : 'block'}`}>
+                      {!isCollapsed && item.title}
+                    </span>
+                  </NavLink>
+                )
               ))}
             </div>
           </nav>
@@ -188,10 +242,10 @@ export const AppSidebar = () => {
             <div className="bg-blue-600 rounded-2xl p-5 text-white">
               <div className="flex items-center gap-3 mb-4">
                 <Star className="w-6 h-6 text-yellow-300" />
-                <span className="text-lg font-semibold">Krishak AI {t('common.pro')}</span>
+                <span className="text-lg font-semibold">CareerBoost {t('common.pro')}</span>
               </div>
               <p className="text-base text-blue-100 mb-4">
-                {t('common.access')}
+                Unlock premium features to boost your career growth
               </p>
               <Button 
                 className="w-full bg-white text-blue-600 hover:bg-blue-50 rounded-2xl text-base py-3"

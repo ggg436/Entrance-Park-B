@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // Gemini API configuration
-const GEMINI_API_KEY = 'AIzaSyDIpw4JrJB3gQTguko0Pbw1ZRbJgldzlB0';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const GEMINI_API_KEY = 'AIzaSyBup4S5hVGJv8pmMCtaS7Y0dC5QHMUU-7c';
+// Updated to use Gemini 2.0 Flash model
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
 
 // Message interface
 export interface ChatMessage {
@@ -77,8 +78,7 @@ export async function getChatCompletion(messages: ChatMessage[]): Promise<string
     // Convert messages to Gemini format
     const contents = convertToGeminiFormat(messages);
     
-    // Gemini API requires at least 2 messages for a conversation
-    // If we don't have enough, we'll handle it differently
+    // Request configuration for Gemini 2.0 Flash
     const requestBody = {
       contents,
       generationConfig: {

@@ -32,7 +32,7 @@ const DashboardLayout = () => {
         </main>
       </div>
 
-      {/* ChatBot Component */}
+      {/* ChatBot Components */}
       <ChatBot />
     </div>
   );

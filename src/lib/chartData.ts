@@ -45,6 +45,12 @@ export interface CropDistributionData {
   color: string;
 }
 
+export interface SkillsDistributionData {
+  name: string;
+  value: number;
+  color: string;
+}
+
 export interface CropYieldData {
   month: string;
   yield: number;
@@ -78,6 +84,7 @@ export interface UserChartData {
   userId: string;
   revenueData?: RevenueData[];
   cropDistributionData?: CropDistributionData[];
+  skillsDistributionData?: SkillsDistributionData[];
   cropYieldData?: CropYieldData[];
   customerSatisfactionData?: CustomerSatisfactionData[];
   targetVsRealityData?: TargetVsRealityData[];
@@ -228,6 +235,7 @@ const checkOfflineData = (userId: string): UserChartData | null => {
     const chartTypes = [
       'revenueData',
       'cropDistributionData',
+      'skillsDistributionData',
       'cropYieldData',
       'customerSatisfactionData',
       'targetVsRealityData',
@@ -274,6 +282,15 @@ export const getDefaultCropDistributionData = (): CropDistributionData[] => [
   { nameKey: 'crops.rice', value: 20, color: '#ffc658' },
   { nameKey: 'crops.barley', value: 15, color: '#ff7300' },
   { nameKey: 'crops.others', value: 5, color: '#8dd1e1' }
+];
+
+export const getDefaultSkillsDistributionData = (): SkillsDistributionData[] => [
+  { name: 'JavaScript', value: 28, color: '#f7df1e' },
+  { name: 'React', value: 22, color: '#61dafb' },
+  { name: 'UI/UX', value: 18, color: '#ff7300' },
+  { name: 'Node.js', value: 15, color: '#68a063' },
+  { name: 'Python', value: 12, color: '#3572A5' },
+  { name: 'Project Management', value: 5, color: '#8dd1e1' }
 ];
 
 export const getDefaultCropYieldData = (): CropYieldData[] => [

@@ -20,11 +20,12 @@ export interface UserProfile {
   displayName: string;
   photoURL: string;
   handle: string;
-  userType?: 'farmer' | 'user';  // Add userType field
+  userType?: 'agency' | 'user';  // Updated from 'farmer' to 'agency'
   followers: string[]; // Array of user IDs who follow this user
   following: string[]; // Array of user IDs this user follows
   followersCount: number;
   followingCount: number;
+  isAdmin?: boolean; // Added for admin access
 }
 
 // Get user profile by ID
@@ -48,7 +49,8 @@ export const getUserProfile = async (userId: string): Promise<UserProfile | null
       followers: userData.followers || [],
       following: userData.following || [],
       followersCount: userData.followersCount || 0,
-      followingCount: userData.followingCount || 0
+      followingCount: userData.followingCount || 0,
+      isAdmin: userData.isAdmin || false
     };
   } catch (error) {
     console.error("Error getting user profile:", error);

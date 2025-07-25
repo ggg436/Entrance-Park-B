@@ -22,7 +22,7 @@ export function useAuth() {
     return () => unsubscribe();
   }, []);
 
-  const signup = async (email: string, password: string, userType: 'farmer' | 'user') => {
+  const signup = async (email: string, password: string, userType: 'agency' | 'user') => {
     try {
       // Create the user with Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -40,7 +40,8 @@ export function useAuth() {
         followersCount: 0,
         followingCount: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        isAdmin: email === 'sanjokgharti01@gmail.com'
       });
       
       return userCredential;
