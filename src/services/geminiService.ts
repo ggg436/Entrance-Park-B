@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Gemini API configuration
-const GEMINI_API_KEY = 'AIzaSyBzVcNNEigBR9RJa1fKKKS6dTxJnRTpn-o';
+const GEMINI_API_KEY = 'AIzaSyDIpw4JrJB3gQTguko0Pbw1ZRbJgldzlB0';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 // Message interface
