@@ -10,17 +10,14 @@ import {
   Star,
   BarChart3,
   Rss,
-  Stethoscope,
   ShoppingCart,
-  ShoppingBag,
   CreditCard,
-  CloudSun,
   DollarSign,
   Settings,
   HelpCircle,
-  Home,
   LineChart,
-  MessageSquare
+  MessageSquare,
+  FileText
 } from 'lucide-react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -57,12 +54,6 @@ export const AppSidebar = () => {
         icon: Rss,
         showFor: ['farmer', 'user']
       },
-      { 
-        title: t('common.drPlant'), 
-        url: '/dashboard/dr-plant',
-        icon: Stethoscope,
-        showFor: ['farmer', 'user']
-      },
       {
         title: t('common.data'),
         url: '/dashboard/data',
@@ -82,21 +73,15 @@ export const AppSidebar = () => {
         showFor: ['farmer', 'user']
       },
       { 
-        title: t('common.orders'), 
-        url: '/dashboard/orders',
-        icon: ShoppingBag,
+        title: 'AI CV Maker', 
+        url: '/dashboard/cv-maker',
+        icon: FileText,
         showFor: ['farmer', 'user']
       },
       { 
         title: t('common.transactions'), 
         url: '/dashboard/transactions',
         icon: CreditCard,
-        showFor: ['farmer', 'user']
-      },
-      { 
-        title: t('common.weather'), 
-        url: '/dashboard/weather',
-        icon: CloudSun,
         showFor: ['farmer', 'user']
       },
       { 

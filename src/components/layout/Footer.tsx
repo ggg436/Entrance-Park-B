@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { 
-  Twitter, 
-  Facebook, 
-  Instagram, 
-  Github, 
-  Linkedin, 
-  Youtube, 
   MapPin, 
   Phone, 
   Mail, 
@@ -16,6 +10,7 @@ import {
   Globe,
   Clock
 } from 'lucide-react';
+import { footerLinks, socialLinks, contactInfo } from './footer-config';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -57,21 +52,11 @@ const Footer = () => {
                 Empowering Nepali farmers with cutting-edge AI technology to increase yields, reduce costs, and make better decisions through data-driven insights.
               </p>
               <div className="flex space-x-4 mb-6">
-                <a href="https://www.facebook.com/sanjok.gc.98" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
-                  <Youtube className="h-5 w-5" />
-                </a>
+                {socialLinks.map((link) => (
+                  <a key={link.name} href={link.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors">
+                    <link.icon className="h-5 w-5" />
+                  </a>
+                ))}
               </div>
             </div>
             
@@ -82,68 +67,24 @@ const Footer = () => {
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 <ul className="space-y-3">
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>About Us</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Services</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Products</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Blog</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Contact</span>
-                    </a>
-                  </li>
+                  {footerLinks.quickLinks.map((link) => (
+                    <li key={link.title}>
+                      <a href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                        <ChevronRight className="h-4 w-4 text-blue-600" />
+                        <span>{link.title}</span>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
                 <ul className="space-y-3">
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Careers</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Privacy Policy</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Terms of Service</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>FAQ</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
-                      <ChevronRight className="h-4 w-4 text-blue-600" />
-                      <span>Support</span>
-                    </a>
-                  </li>
+                  {footerLinks.supportLinks.map((link) => (
+                    <li key={link.title}>
+                      <a href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors flex items-center gap-2">
+                        <ChevronRight className="h-4 w-4 text-blue-600" />
+                        <span>{link.title}</span>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -191,38 +132,38 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                 <p className="text-gray-600">
-                  Kathmandu, Nepal
+                  {contactInfo.address}
                 </p>
               </div>
               
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-600">+9779868597841</p>
-                  <p className="text-gray-500 text-sm">Monday to Friday, 9am to 6pm</p>
+                  <p className="text-gray-600">{contactInfo.phone}</p>
+                  <p className="text-gray-500 text-sm">{contactInfo.phoneHours}</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                 <div>
-                  <a href="mailto:info@krishakai.com" className="text-gray-600 hover:text-blue-600 transition-colors">info@krishakai.com</a>
+                  <a href={`mailto:${contactInfo.primaryEmail}`} className="text-gray-600 hover:text-blue-600 transition-colors">{contactInfo.primaryEmail}</a>
                   <br />
-                  <a href="mailto:sanjokgharti01@gmail.com" className="text-gray-600 hover:text-blue-600 transition-colors">sanjokgharti01@gmail.com</a>
+                  <a href={`mailto:${contactInfo.secondaryEmail}`} className="text-gray-600 hover:text-blue-600 transition-colors">{contactInfo.secondaryEmail}</a>
                 </div>
               </div>
               
               <div className="flex items-start gap-3">
                 <Globe className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">www.krishakai.com</a>
+                <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">{contactInfo.website}</a>
               </div>
               
               <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-gray-600">Working Hours:</p>
-                  <p className="text-gray-500 text-sm">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                  <p className="text-gray-500 text-sm">Sat: 10:00 AM - 2:00 PM</p>
+                  <p className="text-gray-500 text-sm">{contactInfo.workingHours.weekdays}</p>
+                  <p className="text-gray-500 text-sm">{contactInfo.workingHours.saturday}</p>
                 </div>
               </div>
             </div>

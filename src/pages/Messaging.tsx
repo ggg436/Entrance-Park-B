@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, User, Search, ChevronLeft, MoreHorizontal, Plus } from 'lucide-react';
+import { Send, User, Search, ChevronLeft, MoreHorizontal, Plus, MessageSquare, Users, ShoppingBag, Clock, Video, Phone, Info, Archive, Camera, Image, Mic } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
@@ -359,308 +359,309 @@ const Messaging = () => {
   };
 
   return (
-    <div className="p-4 h-full flex flex-col">
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold">{t('common.messaging')}</h1>
-        <p className="text-gray-500">{t('messaging.description')}</p>
-      </div>
-
-      <div className="flex gap-4 h-[calc(100vh-180px)]">
-        {/* Contacts List */}
-        <Card className="w-[350px] flex-shrink-0 flex flex-col overflow-hidden">
-          <div className="p-4">
-            <div className="relative mb-4">
+    <div className="p-0 h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-white">
+      {/* Main messaging container with 3-column layout */}
+      <div className="flex h-[calc(100vh-64px)] overflow-hidden">
+        {/* Left sidebar - Navigation */}
+        <div className="w-[70px] md:w-[80px] border-r flex flex-col items-center py-4 bg-white">
+          <div className="mb-6">
+            <Avatar className="h-12 w-12 bg-gradient-to-br from-blue-400 to-blue-600">
+              <AvatarImage src="/logo.png" />
+              <AvatarFallback className="text-white text-lg">M</AvatarFallback>
+            </Avatar>
+          </div>
+          
+          <nav className="flex flex-col items-center space-y-6 text-gray-500">
+            <div className="flex flex-col items-center text-blue-500">
+              <MessageSquare className="h-6 w-6" />
+              <span className="text-xs mt-1">Chat</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className="h-6 w-6" />
+              <span className="text-xs mt-1">People</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <ShoppingBag className="h-6 w-6" />
+              <span className="text-xs mt-1">Shop</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Clock className="h-6 w-6" />
+              <span className="text-xs mt-1">Request</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Archive className="h-6 w-6" />
+              <span className="text-xs mt-1">Archive</span>
+            </div>
+          </nav>
+          
+          <div className="mt-auto">
+            <Avatar className="h-10 w-10">
+              <AvatarImage src={currentUser?.photoURL || ''} />
+              <AvatarFallback>{currentUser?.displayName?.charAt(0) || 'U'}</AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+        
+        {/* Middle column - Chat list */}
+        <div className={`${selectedChat && window.innerWidth < 768 ? 'hidden' : 'flex'} w-full md:w-[320px] flex-col border-r`}>
+          <div className="p-4 border-b flex justify-between items-center">
+            <h1 className="text-2xl font-bold">Chats</h1>
+            <div className="flex space-x-2">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Video className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Plus className="h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+          
+          <div className="p-2">
+            <div className="relative mb-2">
               <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <Input 
-                placeholder={t('messaging.searchChats')}
-                className="pl-10"
+                placeholder="Search messenger..."
+                className="pl-10 py-2 h-10 text-sm rounded-full bg-gray-100 border-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold">{t('messaging.recentChats')}</h2>
-              <Dialog open={newChatDialogOpen} onOpenChange={setNewChatDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <Plus className="w-4 h-4 mr-2" />
-                    {t('messaging.newChat')}
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>{t('messaging.selectUser')}</DialogTitle>
-                  </DialogHeader>
-                  <div className="relative mb-4">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                    <Input 
-                      placeholder={t('messaging.searchUsers')}
-                      className="pl-10"
-                      value={searchUserTerm}
-                      onChange={(e) => setSearchUserTerm(e.target.value)}
-                    />
-                  </div>
-                  <div className="max-h-[300px] overflow-y-auto">
-                    {filteredUsers.length === 0 ? (
-                      <p className="text-center text-gray-500">{t('messaging.noUsers')}</p>
-                    ) : (
-                      <div className="space-y-2">
-                        {filteredUsers.map((user) => (
-                          <div 
-                            key={user.id}
-                            className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-100"
-                            onClick={() => startNewChat(user.id)}
-                          >
-                            <Avatar className="h-10 w-10">
-                              <AvatarImage src={user.photoURL} />
-                              <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <p className="font-medium">{user.displayName}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
           </div>
-
+          
           <div className="flex-1 overflow-y-auto">
             {loading ? (
               <div className="flex items-center justify-center h-full">
-                <p>{t('common.loading')}...</p>
+                <p className="text-sm">{t('common.loading')}...</p>
               </div>
             ) : (
-              <div className="space-y-4">
-                {/* Recent Chats Section */}
-                <div className="space-y-1 px-2 mb-6">
-                  {filteredChats.length === 0 ? (
-                    <div className="text-center p-4 text-gray-500">
-                      <p>{t('messaging.noChats')}</p>
-                    </div>
-                  ) : (
-                    filteredChats.map((chat) => {
-                      const otherParticipantId = chat.participants.find(p => p !== currentUser?.uid);
-                      const unreadCount = chat.unreadCounts?.[currentUser?.uid || ''] || 0;
-                      
-                      return (
-                        <div 
-                          key={chat.id}
-                          className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors ${
-                            selectedChat?.id === chat.id ? 'bg-gray-100' : ''
-                          }`}
-                          onClick={() => setSelectedChat(chat)}
-                        >
-                          <div className="relative">
-                            <Avatar className="h-12 w-12">
-                              <AvatarImage src={chat.participantPhotos?.[otherParticipantId || ''] || ''} />
-                              <AvatarFallback>{chat.participantNames[otherParticipantId || '']?.charAt(0) || '?'}</AvatarFallback>
-                            </Avatar>
-                            <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
-                              getOtherParticipant(chat)?.online ? 'bg-green-500' : 'bg-gray-400'
-                            }`}></span>
-                          </div>
-                          
-                          <div className="flex-1 min-w-0">
-                            <div className="flex justify-between items-center">
-                              <h3 className="font-medium truncate">
-                                {chat.participantNames[otherParticipantId || ''] || 'Unknown'}
-                              </h3>
-                              <span className="text-xs text-gray-500">
-                                {chat.lastMessageTime ? formatDate(chat.lastMessageTime) : ''}
-                              </span>
-                            </div>
-                            <p className="text-sm text-gray-500 truncate">
-                              {chat.lastMessage || 'Start a conversation'}
-                            </p>
-                          </div>
-                          
-                          {unreadCount > 0 && (
-                            <Badge className="bg-blue-600">{unreadCount}</Badge>
-                          )}
+              <div className="space-y-0">
+                {filteredChats.length === 0 ? (
+                  <div className="text-center p-4 text-gray-500">
+                    <p className="text-sm">{t('messaging.noChats')}</p>
+                  </div>
+                ) : (
+                  filteredChats.map((chat) => {
+                    const otherParticipantId = chat.participants.find(p => p !== currentUser?.uid);
+                    const unreadCount = chat.unreadCounts?.[currentUser?.uid || ''] || 0;
+                    const isActive = selectedChat?.id === chat.id;
+                    
+                    return (
+                      <div 
+                        key={chat.id}
+                        className={`flex items-center gap-3 p-3 cursor-pointer hover:bg-gray-100 transition-colors ${
+                          isActive ? 'bg-blue-100 hover:bg-blue-100' : ''
+                        }`}
+                        onClick={() => setSelectedChat(chat)}
+                      >
+                        <div className="relative">
+                          <Avatar className="h-12 w-12">
+                            <AvatarImage src={chat.participantPhotos?.[otherParticipantId || ''] || ''} />
+                            <AvatarFallback>{chat.participantNames[otherParticipantId || '']?.charAt(0) || '?'}</AvatarFallback>
+                          </Avatar>
+                          <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${
+                            getOtherParticipant(chat)?.online ? 'bg-green-500' : 'bg-gray-400'
+                          }`}></span>
                         </div>
-                      );
-                    })
-                  )}
-                </div>
-                
-                {/* All Users Section */}
-                <div className="px-2">
-                  <h2 className="font-semibold text-sm text-gray-500 px-3 mb-2">{t('messaging.allUsers')}</h2>
-                  {users.length === 0 ? (
-                    <div className="text-center p-4 text-gray-500">
-                      <p>{t('messaging.noUsers')}</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-1">
-                      {users
-                        // Filter out users that are already in existing chats
-                        .filter(user => !filteredChats.some(chat => 
-                          chat.participants.includes(user.id)
-                        ))
-                        .map((user) => (
-                          <div 
-                            key={user.id}
-                            className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
-                            onClick={() => startNewChat(user.id)}
-                          >
-                            <div className="relative">
-                              <Avatar className="h-10 w-10">
-                                <AvatarImage src={user.photoURL} />
-                                <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
-                              </Avatar>
-                              <span className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-white ${
-                                user.online ? 'bg-green-500' : 'bg-gray-400'
-                              }`}></span>
-                            </div>
-                            
-                            <div className="flex-1 min-w-0">
-                              <h3 className="font-medium truncate">{user.displayName}</h3>
-                              <p className="text-xs text-gray-500">{user.online ? 'Online' : 'Offline'}</p>
-                            </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <div className="flex justify-between items-center">
+                            <h3 className="font-medium truncate">
+                              {chat.participantNames[otherParticipantId || ''] || 'Unknown'}
+                            </h3>
+                            <span className="text-xs text-gray-500 ml-1 flex-shrink-0">
+                              {chat.lastMessageTime ? formatDate(chat.lastMessageTime) : ''}
+                            </span>
                           </div>
-                        ))}
-                    </div>
-                  )}
-                </div>
+                          <p className="text-sm text-gray-500 truncate">
+                            {chat.lastMessage || 'Start a conversation'}
+                          </p>
+                        </div>
+                        
+                        {unreadCount > 0 && (
+                          <Badge className="bg-blue-600 hover:bg-blue-700 rounded-full px-1.5 min-h-[20px] min-w-[20px]">{unreadCount}</Badge>
+                        )}
+                      </div>
+                    );
+                  })
+                )}
               </div>
             )}
           </div>
-        </Card>
-
-        {/* Chat Area */}
-        <Card className="flex-1 flex flex-col overflow-hidden">
+        </div>
+        
+        {/* Right column - Chat area */}
+        <div className={`${!selectedChat && window.innerWidth < 768 ? 'hidden' : 'flex'} flex-1 flex-col h-full`}>
           {selectedChat ? (
             <>
               {/* Chat Header */}
-              <div className="flex items-center gap-3 p-4 border-b">
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <ChevronLeft className="h-5 w-5" />
-                </Button>
-                
-                <div className="relative">
-                  <Avatar className="h-10 w-10">
-                    <AvatarImage 
-                      src={selectedChat.participantPhotos?.[selectedChat.participants.find(p => p !== currentUser?.uid) || ''] || ''} 
-                    />
-                    <AvatarFallback>
-                      {selectedChat.participantNames[selectedChat.participants.find(p => p !== currentUser?.uid) || '']?.charAt(0) || '?'}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-white ${
-                    getOtherParticipant(selectedChat)?.online ? 'bg-green-500' : 'bg-gray-400'
-                  }`}></span>
+              <div className="flex items-center justify-between p-3 border-b bg-white">
+                <div className="flex items-center gap-3">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="md:hidden h-8 w-8 rounded-full"
+                    onClick={() => setSelectedChat(null)}
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </Button>
+                  
+                  <div className="relative">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage 
+                        src={selectedChat.participantPhotos?.[selectedChat.participants.find(p => p !== currentUser?.uid) || ''] || ''} 
+                      />
+                      <AvatarFallback>
+                        {selectedChat.participantNames[selectedChat.participants.find(p => p !== currentUser?.uid) || '']?.charAt(0) || '?'}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-lg">
+                      {selectedChat.participantNames[selectedChat.participants.find(p => p !== currentUser?.uid) || ''] || 'Unknown'}
+                    </h3>
+                    <p className="text-xs text-gray-500 flex items-center">
+                      {getOtherParticipant(selectedChat)?.online ? 'Active now' : 'Offline'}
+                    </p>
+                  </div>
                 </div>
                 
-                <div className="flex-1">
-                  <h3 className="font-medium">
-                    {selectedChat.participantNames[selectedChat.participants.find(p => p !== currentUser?.uid) || ''] || 'Unknown'}
-                  </h3>
-                  <p className="text-xs text-gray-500">
-                    {getOtherParticipant(selectedChat)?.online ? 'Online' : 'Offline'}
-                  </p>
+                <div className="flex items-center gap-2">
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Phone className="h-5 w-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Video className="h-5 w-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Info className="h-5 w-5" />
+                  </Button>
                 </div>
-                
-                <Button variant="ghost" size="icon">
-                  <MoreHorizontal className="h-5 w-5" />
-                </Button>
               </div>
 
               {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4">
+              <div className="flex-1 overflow-y-auto p-4 bg-white">
                 {loadingMessages ? (
                   <div className="flex items-center justify-center h-full">
-                    <p>{t('common.loading')}...</p>
+                    <p className="text-sm">{t('common.loading')}...</p>
                   </div>
                 ) : messages.length === 0 ? (
                   <div className="flex items-center justify-center h-full">
-                    <p className="text-gray-500">{t('messaging.noMessages')}</p>
+                    <p className="text-sm text-gray-500">{t('messaging.noMessages')}</p>
                   </div>
                 ) : (
-                  <div className="space-y-4">
-                    {messages.map((msg) => (
-                      <div 
-                        key={msg.id} 
-                        className={`flex ${msg.senderId === currentUser?.uid ? 'justify-end' : ''}`}
-                      >
-                        {msg.senderId !== currentUser?.uid && (
-                          <Avatar className="h-8 w-8 mr-2 mt-1">
-                            <AvatarImage 
-                              src={selectedChat.participantPhotos?.[msg.senderId] || ''} 
-                            />
-                            <AvatarFallback>{msg.senderName.charAt(0)}</AvatarFallback>
-                          </Avatar>
-                        )}
-                        
-                        <div className={`max-w-[70%] ${msg.senderId === currentUser?.uid ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-800'} rounded-xl p-3`}>
-                          <p className="break-words">{msg.text}</p>
-                          <p className={`text-xs mt-1 ${msg.senderId === currentUser?.uid ? 'text-blue-100' : 'text-gray-500'}`}>
-                            {msg.timestamp ? formatTime(msg.timestamp) : ''}
-                          </p>
+                  <div className="space-y-3">
+                    {messages.map((msg) => {
+                      const isCurrentUser = msg.senderId === currentUser?.uid;
+                      return (
+                        <div 
+                          key={msg.id} 
+                          className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
+                        >
+                          {!isCurrentUser && (
+                            <Avatar className="h-8 w-8 mr-2 self-end">
+                              <AvatarImage 
+                                src={selectedChat.participantPhotos?.[msg.senderId] || ''} 
+                              />
+                              <AvatarFallback>{msg.senderName.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                          )}
+                          
+                          <div className={`max-w-[75%] ${
+                            isCurrentUser 
+                              ? 'bg-blue-500 text-white rounded-[18px] rounded-tr-sm' 
+                              : 'bg-gray-200 text-gray-800 rounded-[18px] rounded-tl-sm'
+                          } px-4 py-2`}>
+                            <p className="break-words">{msg.text}</p>
+                          </div>
+                          
+                          {isCurrentUser && (
+                            <Avatar className="h-8 w-8 ml-2 self-end">
+                              <AvatarImage src={currentUser?.photoURL || ''} />
+                              <AvatarFallback>{currentUser?.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                            </Avatar>
+                          )}
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                     <div ref={messagesEndRef} />
                   </div>
                 )}
               </div>
 
               {/* Message Input */}
-              <div className="p-4 border-t">
-                <div className="flex gap-2">
-                  <Input
-                    placeholder={t('messaging.typeMessage')}
-                    className="flex-1"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                  />
-                  <Button onClick={handleSendMessage}>
-                    <Send className="h-4 w-4" />
+              <div className="p-3 border-t bg-white flex items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Plus className="h-5 w-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Camera className="h-5 w-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Image className="h-5 w-5" />
+                  </Button>
+                  <Button variant="ghost" size="icon" className="rounded-full">
+                    <Mic className="h-5 w-5" />
                   </Button>
                 </div>
+                
+                <Input
+                  placeholder="Message..."
+                  className="flex-1 rounded-full border-gray-200 focus:border-blue-500 bg-gray-100 border-none"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+                
+                <Button 
+                  onClick={handleSendMessage}
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full"
+                  disabled={!message.trim()}
+                >
+                  <Send className={`h-5 w-5 ${message.trim() ? 'text-blue-500' : 'text-gray-400'}`} />
+                </Button>
               </div>
             </>
           ) : (
             <div className="flex flex-col items-center justify-center h-full text-center p-6">
-              <User className="w-12 h-12 text-gray-300 mb-4" />
-              <h3 className="text-xl font-medium mb-2">{t('messaging.noChat')}</h3>
-              <p className="text-gray-500 mb-6">
-                {t('messaging.selectChat')}
+              <div className="bg-blue-100 rounded-full p-6 mb-6">
+                <MessageSquare className="w-12 h-12 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-medium mb-2">Your Messages</h3>
+              <p className="text-gray-500 mb-6 max-w-md">
+                Send private messages to a friend or group
               </p>
               <Dialog open={newChatDialogOpen} onOpenChange={setNewChatDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button>
-                    <User className="w-4 h-4 mr-2" />
-                    {t('messaging.startChat')}
+                  <Button className="rounded-full px-6 py-2 bg-blue-500 hover:bg-blue-600">
+                    Send Message
                   </Button>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="rounded-2xl max-w-sm">
                   <DialogHeader>
-                    <DialogTitle>{t('messaging.selectUser')}</DialogTitle>
+                    <DialogTitle>New Message</DialogTitle>
                   </DialogHeader>
-                  <div className="relative mb-4">
+                  <div className="relative mb-3">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <Input 
-                      placeholder={t('messaging.searchUsers')}
-                      className="pl-10"
+                      placeholder="Search for people"
+                      className="pl-10 py-2 rounded-full border-gray-200 focus:border-blue-500"
                       value={searchUserTerm}
                       onChange={(e) => setSearchUserTerm(e.target.value)}
                     />
                   </div>
-                  <div className="max-h-[300px] overflow-y-auto">
+                  <div className="max-h-[250px] overflow-y-auto">
                     {filteredUsers.length === 0 ? (
-                      <p className="text-center text-gray-500">{t('messaging.noUsers')}</p>
+                      <p className="text-center text-gray-500 py-3">No users found</p>
                     ) : (
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         {filteredUsers.map((user) => (
                           <div 
                             key={user.id}
-                            className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-gray-100"
+                            className="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-gray-100 transition-all"
                             onClick={() => startNewChat(user.id)}
                           >
                             <Avatar className="h-10 w-10">
@@ -679,7 +680,7 @@ const Messaging = () => {
               </Dialog>
             </div>
           )}
-        </Card>
+        </div>
       </div>
     </div>
   );

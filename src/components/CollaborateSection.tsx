@@ -60,13 +60,13 @@ const CollaborateSection = () => {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Collaborate with your team{' '}
+              Collaborate with your farm team{' '}
               <span className="text-blue-600">anytime, anywhere.</span>
             </h2>
             
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              See which work areas your team is working in, and join them with a click. 
-              Shared cursors show team members' positions in real time.
+              Share real-time data with your farm workers, agronomists, and consultants. 
+              Our platform makes it easy to coordinate tasks and make informed decisions together.
             </p>
 
             {/* Features Grid */}
@@ -74,35 +74,35 @@ const CollaborateSection = () => {
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 text-emerald-500 mt-1">✓</div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">Organize your data</h3>
+                  <h3 className="font-medium text-gray-900 text-sm">Share field data</h3>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 text-emerald-500 mt-1">✓</div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">Always in sync</h3>
+                  <h3 className="font-medium text-gray-900 text-sm">Real-time sync</h3>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 text-emerald-500 mt-1">✓</div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">Work with any team</h3>
+                  <h3 className="font-medium text-gray-900 text-sm">Connect with experts</h3>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 text-emerald-500 mt-1">✓</div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">Extended analytics</h3>
+                  <h3 className="font-medium text-gray-900 text-sm">Farm analytics</h3>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 col-span-2">
                 <div className="w-5 h-5 text-emerald-500 mt-1">✓</div>
                 <div>
-                  <h3 className="font-medium text-gray-900 text-sm">Business analytics</h3>
+                  <h3 className="font-medium text-gray-900 text-sm">Task management</h3>
                 </div>
               </div>
             </div>

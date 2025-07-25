@@ -13,25 +13,25 @@ const CustomReportSection = () => {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Custom report that guides your{' '}
-              <span className="text-blue-600">decision-making</span>
+              Custom reports that guide your{' '}
+              <span className="text-blue-600">farm's growth</span>
             </h2>
             
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              The customer journey differs for everybody—whether you use them together 
-              or on their own, our products are flexible enough to serve the path that's best for you.
+              Our flexible reporting tools allow you to track the metrics that matter most to your farm, 
+              providing actionable insights to optimize your operations and increase profitability.
             </p>
 
             {/* Stats */}
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="text-3xl font-bold text-gray-900">25%</div>
-                <div className="text-gray-600">Increase in retention</div>
+                <div className="text-3xl font-bold text-gray-900">15%</div>
+                <div className="text-gray-600">Increase in crop yield</div>
               </div>
               
               <div className="flex items-center gap-4">
-                <div className="text-3xl font-bold text-gray-900">1.7X</div>
-                <div className="text-gray-600">User base growth</div>
+                <div className="text-3xl font-bold text-gray-900">1.2X</div>
+                <div className="text-gray-600">Return on investment</div>
               </div>
             </div>
           </div>

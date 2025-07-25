@@ -13,13 +13,13 @@ const AnalyticsSection = () => {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              We make it effortlessly to track{' '}
-              <span className="text-emerald-600">all user analytics</span>
+              Track your farm's performance with{' '}
+              <span className="text-emerald-600">powerful analytics</span>
             </h2>
             
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              Get comprehensive insights into your users with our virtually 
-              self-organizing data visualization and insightful dashboards & reports.
+              Gain valuable insights into your farm's operations with our advanced analytics tools. 
+              Track crop performance, monitor resource usage, and make data-driven decisions.
             </p>
 
             {/* Features */}
@@ -29,8 +29,8 @@ const AnalyticsSection = () => {
                   <BarChart3 className="w-6 h-6 text-yellow-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Powerful dashboard</h3>
-                  <p className="text-gray-600 text-sm">Combine multiple reports into a single beautifully structured dashboard</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Custom Dashboards</h3>
+                  <p className="text-gray-600 text-sm">Create personalized dashboards to visualize your farm's data and track key metrics.</p>
                 </div>
               </div>
 
@@ -39,8 +39,8 @@ const AnalyticsSection = () => {
                   <RefreshCw className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Always in Sync</h3>
-                  <p className="text-gray-600 text-sm">Don't worry about live data. Sync now so no communication</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Real-Time Data</h3>
+                  <p className="text-gray-600 text-sm">Get live updates on your farm's performance so you can react quickly to changing conditions.</p>
                 </div>
               </div>
             </div>

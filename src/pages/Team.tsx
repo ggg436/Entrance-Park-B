@@ -2,7 +2,7 @@ import React from 'react';
 import { Twitter, Facebook, Instagram, Github, MapPin, Mail, PhoneCall } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import Header from '@/components/Header';
+import Header from '@/components/layout/Header';
 
 const Team = () => {
   const teamMembers = [

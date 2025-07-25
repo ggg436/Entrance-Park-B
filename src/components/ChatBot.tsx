@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Minus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader } from '@/components/ui/card';
-import { getChatCompletion, ChatMessage } from '@/services/openRouterService';
+import { getChatCompletion, ChatMessage } from '@/services/geminiService';
 
 interface Message {
   id: string;
@@ -54,11 +54,11 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      // Convert messages to format required by OpenRouter API
+      // Convert messages to format required by Gemini API
       const chatHistory: ChatMessage[] = [
         {
           role: 'system',
-          content: 'You are a helpful AI assistant for Krishak AI, a platform focused on agriculture. Your name is AgriBot. You provide assistance with farming, crop management, weather analysis, and agricultural techniques. Keep responses concise, practical, and focused on agriculture. Be friendly and supportive to farmers.'
+          content: 'You are a helpful AI assistant for Krishak AI, a platform focused on agriculture. Your name is AgriBot. You provide assistance with farming, crop management, weather analysis, and agricultural techniques. Keep responses concise, practical, and focused on agriculture. Be friendly and supportive to farmers. You have expertise in farming practices in Nepal and South Asia.'
         }
       ];
       
@@ -77,7 +77,7 @@ const ChatBot = () => {
         content: userMessage.text
       });
 
-      // Get AI response from OpenRouter API
+      // Get AI response from Gemini API
       const aiResponse = await getChatCompletion(chatHistory);
 
       // Add AI response to chat
