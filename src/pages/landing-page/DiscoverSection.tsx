@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, CloudRain, Tractor, Users, ShoppingCart } from 'lucide-react';
+import { Search, BookOpen, GraduationCap, Users, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Define wave background styles
@@ -26,20 +26,24 @@ const waveStyles = `
 const DiscoverSection = () => {
   const features = [
     {
-      icon: Sprout,
-      description: "Our platform is specially designed for Nepali farmers, with a simple interface that works in local languages and doesn't require technical expertise to use."
+      icon: Search,
+      title: "Intelligent Job Matching",
+      description: "Our AI technology matches your skills and experience to the perfect job opportunities, saving you time and increasing your chances of landing your dream role."
     },
     {
-      icon: CloudRain,
-      description: "Access hyper-local weather forecasting and climate insights specific to Nepal's diverse geographical regions, from the Terai plains to high mountain farms."
+      icon: Briefcase,
+      title: "CV Builder & Analyzer",
+      description: "Create a standout resume with our professional templates and AI-powered recommendations. Get instant feedback to improve your resume's effectiveness."
     },
     {
-      icon: Tractor,
-      description: "Get customized recommendations for traditional and modern farming techniques suited to your specific crops, soil conditions, and local agricultural practices."
+      icon: GraduationCap,
+      title: "Skill Development",
+      description: "Identify skill gaps and access targeted courses to enhance your employability in today's competitive job market."
     },
     {
       icon: Users,
-      description: "Connect with a community of thousands of Nepali farmers sharing knowledge, trading tips, and collaborating to overcome common challenges together."
+      title: "Professional Network",
+      description: "Connect with industry professionals, participate in discussions, and expand your network to discover new career opportunities."
     }
   ];
 
@@ -67,7 +71,7 @@ const DiscoverSection = () => {
         {[...Array(16)].map((_, i) => (
           <div 
             key={i} 
-            className="absolute w-2 h-2 bg-green-600 rounded-full"
+            className="absolute w-2 h-2 bg-purple-600 rounded-full"
             style={{ 
               top: `${Math.floor(Math.random() * 100)}%`, 
               left: `${Math.floor(Math.random() * 100)}%`,
@@ -77,114 +81,33 @@ const DiscoverSection = () => {
         ))}
       </div>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-              Krishak AI: Made for Nepali Farmers
-            </h2>
-            
-            <div className="space-y-8">
-              {features.map((feature, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <p className="text-gray-600 leading-relaxed pt-2">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg rounded-lg">
-                Try Krishak AI Free
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Image - Mobile Mockup */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="w-80 h-[600px] bg-black rounded-[3rem] p-3 shadow-2xl">
-                <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
-                  {/* Mobile Screen Content */}
-                  <div className="bg-blue-600 h-24 flex items-center justify-between px-6 text-white">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                        <Sprout className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="font-medium">Krishak AI</span>
-                    </div>
-                    <div className="w-6 h-6 bg-white/20 rounded flex items-center justify-center">
-                      <Users className="w-3 h-3 text-white" />
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 space-y-4">
-                    <div className="bg-gray-100 rounded-lg p-4">
-                      <div className="text-sm text-gray-600 mb-2">Today's Update</div>
-                      <div className="text-gray-900 font-medium">Weather Alert: Light Rain Expected in Eastern Terai</div>
-                      <div className="text-xs text-gray-500 mt-2">Updated 20 min ago</div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-blue-100 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-blue-600">85%</div>
-                        <div className="text-xs text-gray-600">Soil Moisture</div>
-                      </div>
-                      <div className="bg-green-100 rounded-lg p-4 text-center">
-                        <div className="text-2xl font-bold text-green-600">28°C</div>
-                        <div className="text-xs text-gray-600">Temperature</div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="text-sm font-medium">Rice Field Status</div>
-                        <div className="text-xs text-gray-500">Healthy - 3 weeks to harvest</div>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="text-sm font-medium">Market Prices</div>
-                        <div className="text-xs text-gray-500">Rice NPR 75/kg (+5%)</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-4">
-                    <div className="flex justify-around">
-                      <div className="text-center">
-                        <div className="w-6 h-6 bg-blue-600 rounded mx-auto mb-1 flex items-center justify-center">
-                          <Sprout className="w-3 h-3 text-white" />
-                        </div>
-                        <div className="text-xs">Crops</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="w-6 h-6 bg-gray-300 rounded mx-auto mb-1 flex items-center justify-center">
-                          <CloudRain className="w-3 h-3 text-white" />
-                        </div>
-                        <div className="text-xs">Weather</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="w-6 h-6 bg-gray-300 rounded mx-auto mb-1 flex items-center justify-center">
-                          <ShoppingCart className="w-3 h-3 text-white" />
-                        </div>
-                        <div className="text-xs">Market</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="w-6 h-6 bg-gray-300 rounded mx-auto mb-1 flex items-center justify-center">
-                          <Users className="w-3 h-3 text-white" />
-                        </div>
-                        <div className="text-xs">Community</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div className="max-w-5xl mx-auto relative z-10 text-center">
+        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+          Supercharge Your Career Journey
+        </h2>
+        
+        <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+          Job In Point combines AI technology with powerful career tools to help you find opportunities that match your skills and ambitions.
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mb-4">
+                <feature.icon className="w-6 h-6 text-blue-600" />
               </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="mt-12">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg rounded-lg">
+            Start Your Career Journey
+          </Button>
         </div>
       </div>
     </section>
